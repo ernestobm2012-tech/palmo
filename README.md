@@ -33,3 +33,4 @@ El acceso de distribuidores, la tienda, el blog y las páginas legales siguen ap
 
 - Los cambios se hacen en la rama `desarrollo` y se proponen a `main` mediante un Pull Request.
 - `main` es lo que está publicado en GitHub Pages: al fusionar (merge) el PR, la web se actualiza en 1-2 minutos.
+- Al cambiar `css/styles.css` o `js/main.js`, sube el número `?v=` con el que se enlazan en `index.html` para que los navegadores no usen la versión antigua de su caché.
