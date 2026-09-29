@@ -60,7 +60,7 @@
         <a href="#impresion">Impresión</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#distribuidores">Distribuidores</a>
-        <a href="#asistente">Asistente</a>
+        <a href="#asistente" data-open-chat>Asistente</a>
         <a href="#contacto">Contacto</a>
         <a class="btn btn--ghost btn--sm" href="https://palmo.es/mi-cuenta" rel="nofollow">Acceso distribuidor</a>
       </nav>
@@ -293,23 +293,6 @@
       </div>
     </section>
 
-    <!-- ASISTENTE -->
-    <section class="section section--alt" id="asistente">
-      <div class="container assistant">
-        <div class="assistant__info">
-          <p class="eyebrow">Asistente</p>
-          <h2>¿Tienes dudas? Pregúntanos ahora</h2>
-          <p>Nuestro asistente te responde al momento sobre consumibles, piezas, hardware y cualquiera de nuestros servicios. Si lo prefieres, escríbenos desde el formulario de contacto.</p>
-          <ul class="checklist">
-            <li>Respuesta inmediata</li>
-            <li>Consulta compatibilidades y disponibilidad</li>
-            <li>Solicita un presupuesto sin compromiso</li>
-          </ul>
-        </div>
-        <div class="assistant__chat" id="agente-chat"></div>
-      </div>
-    </section>
-
     <!-- CONTACTO -->
     <section class="section" id="contacto">
       <div class="container contact">
@@ -396,6 +379,14 @@
     </div>
   </footer>
 
+  <button class="chat-float" type="button" aria-expanded="false" aria-controls="chat-panel" aria-label="Abrir el asistente">
+    <svg class="chat-float__open" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3h16a2 2 0 012 2v11a2 2 0 01-2 2H8.4L4 21.5V18a2 2 0 01-2-2V5a2 2 0 012-2zm3 6.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+    <svg class="chat-float__close" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-label="Asistente de Palmo" aria-hidden="true">
+    <div class="chat-panel__body" id="agente-chat"></div>
+  </div>
+
   <a class="wa-float" href="https://wa.me/34674125761" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
     <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 00-11.2 19.6L3 29l6.6-1.7A13 13 0 1016 3zm0 23.7a10.7 10.7 0 01-5.5-1.5l-.4-.2-3.9 1 1-3.8-.2-.4A10.7 10.7 0 1116 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.8 8.8 0 01-2.6-1.6 9.7 9.7 0 01-1.8-2.2c-.2-.3 0-.5.1-.7l.5-.6.3-.5a.6.6 0 000-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 00-.9.4 3.7 3.7 0 00-1.1 2.7 6.5 6.5 0 001.3 3.4 14.7 14.7 0 005.7 5c2.1.9 2.9 1 4 .8a3.4 3.4 0 002.2-1.6 2.8 2.8 0 00.2-1.6c-.1-.1-.3-.2-.6-.3z"/></svg>
   </a>
@@ -403,13 +394,34 @@
   <script src="js/main.js" defer></script>
 
   <!-- Agente de chat (LeadConnector). El widget está en modo "incrustado":
-       se crea al final del body y lo movemos a su sección #agente-chat. -->
+       se crea al final del body; lo movemos al panel emergente #agente-chat
+       y hacemos que ocupe el alto del panel (por defecto mide 592px fijos). -->
   <script>
     (function () {
       var target = document.getElementById('agente-chat');
+      var FIT = ':host{display:block;height:100%}' +
+        ':host > div, #lc_text-widget, #lc_text-widget--box{height:100% !important;max-height:100% !important}' +
+        '#lc_text-widget--box > .chat-pane{flex:1 1 auto;min-height:0}';
+      // Se aplica cuando el chat ya está pintado; insertar antes rompe su renderizado.
+      function fit(w, tries) {
+        var root = w.shadowRoot;
+        if (root && root.querySelector('#lc_text-widget--box')) {
+          if ('adoptedStyleSheets' in root && typeof CSSStyleSheet === 'function' && CSSStyleSheet.prototype.replaceSync) {
+            var sheet = new CSSStyleSheet();
+            sheet.replaceSync(FIT);
+            root.adoptedStyleSheets = root.adoptedStyleSheets.concat(sheet);
+          } else {
+            var st = document.createElement('style');
+            st.textContent = FIT;
+            root.appendChild(st);
+          }
+        } else if (tries > 0) {
+          setTimeout(function () { fit(w, tries - 1); }, 250);
+        }
+      }
       function place() {
         var w = document.querySelector('chat-widget');
-        if (w && w.parentNode !== target) { target.appendChild(w); return true; }
+        if (w && w.parentNode !== target) { target.appendChild(w); fit(w, 120); return true; }
         return !!w;
       }
       if (place()) return;

@@ -28,3 +28,8 @@ Al no haber servidor, el formulario prepara el mensaje y lo abre en el correo (`
 ## Enlaces a la web actual
 
 El acceso de distribuidores, la tienda, el blog y las páginas legales siguen apuntando a palmo.es.
+
+## Flujo de trabajo
+
+- Los cambios se hacen en la rama `desarrollo` y se proponen a `main` mediante un Pull Request.
+- `main` es lo que está publicado en GitHub Pages: al fusionar (merge) el PR, la web se actualiza en 1-2 minutos.
