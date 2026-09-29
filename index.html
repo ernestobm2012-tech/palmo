@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=3">
   <script>document.documentElement.className += " js";</script>
   <script type="application/ld+json">
   {
@@ -88,6 +88,8 @@
             <li><strong>Desde 2008</strong><span>Distribuidor exclusivo MSE</span></li>
           </ul>
         </div>
+        <div class="hero__media">
+          <img class="hero__photo" src="assets/img/fotos/hero-copiadora.jpg" alt="Persona utilizando una copiadora multifunción en la oficina" width="737" height="921" fetchpriority="high">
         <div class="hero__card" aria-hidden="true">
           <div class="cmyk">
             <span style="--c:var(--cyan)"></span>
@@ -98,17 +100,23 @@
           <p class="hero__card-title">Garantía 100%</p>
           <p class="hero__card-text">Si nuestro consumible dañase tu equipo, nos hacemos cargo de la reparación.</p>
         </div>
+        </div>
       </div>
     </section>
 
     <!-- PILARES -->
     <section class="section pillars" id="nosotros">
       <div class="container">
-        <header class="section__head">
-          <p class="eyebrow">Por qué Palmo</p>
-          <h2>Tres compromisos con cada cliente</h2>
-          <p>Seleccionamos los mejores productos para aumentar la rentabilidad de nuestros distribuidores y reducir los gastos de impresión de sus clientes: una relación en la que todos ganan.</p>
-        </header>
+        <div class="intro">
+          <header class="section__head">
+            <p class="eyebrow">Por qué Palmo</p>
+            <h2>Tres compromisos con cada cliente</h2>
+            <p>Seleccionamos los mejores productos para aumentar la rentabilidad de nuestros distribuidores y reducir los gastos de impresión de sus clientes: una relación en la que todos ganan.</p>
+          </header>
+          <figure class="photo intro__photo">
+            <img src="assets/img/fotos/oficina-impresora.jpg" alt="Profesional cambiando el consumible de una impresora en su oficina" width="1227" height="920" loading="lazy">
+          </figure>
+        </div>
         <div class="grid grid--3">
           <article class="pillar reveal">
             <span class="pillar__icon" style="--c:var(--cyan)">
@@ -211,6 +219,7 @@
         </div>
 
         <div class="tabpanel" role="tabpanel" id="tab-consumibles" aria-labelledby="t-consumibles">
+          <figure class="photo photo--band"><img src="assets/img/fotos/banda-consumibles.jpg" alt="Cartuchos de tóner cian, magenta y amarillo instalados en una impresora" width="1440" height="361" loading="lazy"></figure>
           <div class="grid grid--brands">
             <article class="brand-card brand-card--featured">
               <span class="badge">Exclusiva España y Portugal desde 2008</span>
@@ -237,6 +246,7 @@
         </div>
 
         <div class="tabpanel" role="tabpanel" id="tab-piezas" aria-labelledby="t-piezas" hidden>
+          <figure class="photo photo--band"><img src="assets/img/fotos/banda-piezas.jpg" alt="Unidades de tóner CMYK para copiadoras" width="1440" height="322" loading="lazy"></figure>
           <div class="split">
             <div>
               <h3>Recambios para copiadoras e impresoras</h3>
@@ -257,14 +267,17 @@
             <div>
               <h3>Equipos de las mejores marcas</h3>
               <p>Impresoras, multifunción y equipamiento informático de fabricantes de referencia, con el asesoramiento de nuestros analistas para elegir lo que mejor se adapta a tu volumen de trabajo.</p>
+              <ul class="checklist">
+                <li>Impresoras y equipos multifunción</li>
+                <li>Ordenadores y periféricos</li>
+                <li>Dispositivos móviles</li>
+                <li>Soluciones de reciclaje i-Recycle</li>
+              </ul>
               <a class="btn btn--primary" href="#contacto" data-topic="Hardware">Pedir asesoramiento</a>
             </div>
-            <ul class="checklist">
-              <li>Impresoras y equipos multifunción</li>
-              <li>Ordenadores y periféricos</li>
-              <li>Dispositivos móviles</li>
-              <li>Soluciones de reciclaje i-Recycle</li>
-            </ul>
+            <figure class="photo">
+              <img src="assets/img/fotos/hardware-lexmark.jpg" alt="Impresoras y equipos multifunción Lexmark" width="1400" height="1050" loading="lazy">
+            </figure>
           </div>
         </div>
 
