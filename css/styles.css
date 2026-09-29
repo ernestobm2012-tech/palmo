@@ -197,6 +197,13 @@ address { font-style: normal; }
 .cta-band p { max-width: 38em; margin: 0; }
 .cta-band__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* Asistente */
+.assistant { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center; }
+.assistant__info > p { color: var(--muted); }
+.assistant .checklist { background: #fff; margin-top: 24px; }
+.assistant__chat { min-height: 592px; }
+.assistant__chat chat-widget { display: block; }
+
 /* Contacto */
 .contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
 .contact__info > p { color: var(--muted); }
@@ -265,7 +272,7 @@ address { font-style: normal; }
   .nav a:not(.btn)::after { display: none; }
   .nav .btn { margin-top: 16px; }
   .hero { padding: 56px 0 64px; }
-  .hero__inner, .split, .contact { grid-template-columns: 1fr; gap: 40px; }
+  .hero__inner, .split, .contact, .assistant { grid-template-columns: 1fr; gap: 40px; }
   .grid--3 { grid-template-columns: 1fr; }
   .cta-band__inner { flex-direction: column; align-items: flex-start; }
   .section { padding: 72px 0; }

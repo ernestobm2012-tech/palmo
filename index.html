@@ -60,6 +60,7 @@
         <a href="#impresion">Impresión</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#distribuidores">Distribuidores</a>
+        <a href="#asistente">Asistente</a>
         <a href="#contacto">Contacto</a>
         <a class="btn btn--ghost btn--sm" href="https://palmo.es/mi-cuenta" rel="nofollow">Acceso distribuidor</a>
       </nav>
@@ -292,6 +293,23 @@
       </div>
     </section>
 
+    <!-- ASISTENTE -->
+    <section class="section section--alt" id="asistente">
+      <div class="container assistant">
+        <div class="assistant__info">
+          <p class="eyebrow">Asistente</p>
+          <h2>¿Tienes dudas? Pregúntanos ahora</h2>
+          <p>Nuestro asistente te responde al momento sobre consumibles, piezas, hardware y cualquiera de nuestros servicios. Si lo prefieres, escríbenos desde el formulario de contacto.</p>
+          <ul class="checklist">
+            <li>Respuesta inmediata</li>
+            <li>Consulta compatibilidades y disponibilidad</li>
+            <li>Solicita un presupuesto sin compromiso</li>
+          </ul>
+        </div>
+        <div class="assistant__chat" id="agente-chat"></div>
+      </div>
+    </section>
+
     <!-- CONTACTO -->
     <section class="section" id="contacto">
       <div class="container contact">
@@ -383,5 +401,22 @@
   </a>
 
   <script src="js/main.js" defer></script>
+
+  <!-- Agente de chat (LeadConnector). El widget está en modo "incrustado":
+       se crea al final del body y lo movemos a su sección #agente-chat. -->
+  <script>
+    (function () {
+      var target = document.getElementById('agente-chat');
+      function place() {
+        var w = document.querySelector('chat-widget');
+        if (w && w.parentNode !== target) { target.appendChild(w); return true; }
+        return !!w;
+      }
+      if (place()) return;
+      var obs = new MutationObserver(function () { if (place()) obs.disconnect(); });
+      obs.observe(document.body, { childList: true });
+    })();
+  </script>
+  <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6abab2d0b5c6d86ff6d69017"></script>
 </body>
 </html>
