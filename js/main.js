@@ -131,30 +131,3 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
-
-// Asistente emergente: botón flotante que abre/cierra el panel del chat
-(function () {
-  var btn = document.querySelector('.chat-float');
-  var panel = document.getElementById('chat-panel');
-  if (!btn || !panel) return;
-
-  function setOpen(open) {
-    btn.setAttribute('aria-expanded', String(open));
-    btn.setAttribute('aria-label', open ? 'Cerrar el asistente' : 'Abrir el asistente');
-    panel.classList.toggle('is-open', open);
-    panel.setAttribute('aria-hidden', String(!open));
-    if (open) btn.classList.add('is-seen');
-  }
-
-  btn.addEventListener('click', function () {
-    setOpen(btn.getAttribute('aria-expanded') !== 'true');
-  });
-  document.querySelectorAll('[data-open-chat]').forEach(function (el) {
-    el.addEventListener('click', function (e) { e.preventDefault(); setOpen(true); });
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && panel.classList.contains('is-open')) { setOpen(false); btn.focus(); }
-  });
-  // Un enlace a .../#asistente abre el chat directamente
-  if (location.hash === '#asistente') setOpen(true);
-})();
